@@ -23,13 +23,13 @@ class OrderProcessor {
 
         if ($recent > 0)
         {
-            throw new Exception('Duplicate order likely.');
+            throw new Exception('Duplicate order likely.', '0001');
         }
 
         $this->biller->bill($order->account->id, $order->amount);
         $createOrderStatus = $this->createOrder($order);
         if (createOrderStatus !== true) {
-            throw new Exception('Create order fail');
+            throw new Exception('Create order fail', '0002');
         }
 
         return true;
